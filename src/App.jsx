@@ -1,9 +1,14 @@
+import { Outlet } from "react-router-dom"
+import { Navbar } from "./Components/Navbar"
+import Footer from "./Components/Footer"
 
 function App() {
 
   return (
     <>
-      <p className="bg-amber-500">Avocado</p>
+      <Navbar/>
+      <Outlet/>
+      <Footer/>
     </>
   )
 }
