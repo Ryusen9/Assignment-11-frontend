@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Carousel from "./Carousel";
 
 const Hero = () => {
   return (
-    <div className='min-h-screen w-full flex justify-center items-center'>
-        <p>Hero</p>
+    <div className="min-h-screen w-full flex justify-center items-center">
+      <Carousel />
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
