@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IoClose, IoMenu, IoMoon, IoSunny } from "react-icons/io5";
 import Context from "./Context/Context";
+import { Link } from "react-router-dom";
 export const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef(null);
@@ -53,11 +54,13 @@ export const Navbar = () => {
           </div>
           <div className="flex items-center justify-center">
             {/* Login Button */}
-            <button
-              className={`btn btn-outline btn-primary text-black btn-sm lg:btn-md border-emerald-300 hover:bg-emerald-400`}
-            >
-              Login
-            </button>
+            <Link to={"/logIn"}>
+              <button
+                className={`btn btn-outline btn-primary text-black btn-sm lg:btn-md border-emerald-300 hover:bg-emerald-400`}
+              >
+                Login
+              </button>
+            </Link>
 
             {/* Theme Switcher */}
             <button

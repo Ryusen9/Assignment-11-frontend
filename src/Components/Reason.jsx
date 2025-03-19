@@ -51,7 +51,7 @@ const Reason = () => {
                 <div
                   key={content.id}
                   className={`text-left p-4 rounded-2xl ${
-                    theme === "dark" ? "bg-slate-700" : "bg-slate-300"
+                    theme === "dark" ? "bg-slate-700" : "bg-slate-100"
                   }`}
                 >
                   <p className="text-lg font-semibold">{content.title}</p>
@@ -77,7 +77,7 @@ const Reason = () => {
               .filter((item) => item.id % 2 === 0)
               .map((content) => (
                 <div key={content.id} className={`text-right lg:text-right p-4 rounded-2xl ${
-                    theme === "dark" ? "bg-slate-700" : "bg-slate-300"
+                    theme === "dark" ? "bg-slate-700" : "bg-slate-100"
                   }`}>
                   <p className="text-lg font-semibold">{content.title}</p>
                   <p className="text-sm text-gray-400">{content.description}</p>
