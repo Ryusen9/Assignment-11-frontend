@@ -81,9 +81,11 @@ const LogInPage = () => {
           <Link>
             <p>
               Don't have an account?{" "}
-              <span className="text-emerald-500 cursor-pointer hover:underline font-semibold">
-                Register
-              </span>
+              <Link to={"/register"}>
+                <span className="text-emerald-500 cursor-pointer hover:underline font-semibold">
+                  Register
+                </span>
+              </Link>
             </p>
           </Link>
         </form>
