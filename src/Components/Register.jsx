@@ -52,7 +52,7 @@ const Register = () => {
       >
         <div className="my-4 flex items-center justify-center gap-3 text-center">
           <FaRegCircleUser className="text-5xl" />
-          <p className="font-Heebo font-bold text-3xl">Register</p>
+          <p className="font-Heebo font-bold text-3xl">Register Now!</p>
         </div>
         <div className="max-w-3xl flex gap-4 flex-col items-center justify-center">
           {/* Name Field */}
