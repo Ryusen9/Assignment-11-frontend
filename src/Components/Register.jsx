@@ -16,7 +16,6 @@ const Register = () => {
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  // Regex for password validation (1 uppercase, 1 special character, min 6 chars)
   const passwordRegex = /^(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
 
   const handlePasswordChange = (e) => {
@@ -38,13 +37,33 @@ const Register = () => {
     setConfirmPassword(e.target.value);
     setError(password === e.target.value ? "" : "Passwords do not match!");
   };
-
+  const { createUser } = useContext(Context);
+  const handleCreateUser = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.confirmPassword.value;
+    const photoUrl = form.photoUrl.value;
+    const user = {
+      name,
+      email,
+      password,
+      photoUrl,
+    };
+    console.log(user);
+    createUser(email, password)
+    .then((data) => {
+      console.log(data)
+    })
+  };
   return (
     <div className="min-h-screen mt-8 w-full flex items-center justify-center">
       <div className="flex flex-col lg:flex-row p-3 gap-6 items-center justify-center">
         <Lottie animationData={registerAnimation} />
       </div>
       <form
+        onSubmit={handleCreateUser}
         action="register"
         className={`${
           theme === "dark" ? "bg-slate-700" : "bg-slate-50"
@@ -91,7 +110,7 @@ const Register = () => {
             <input
               type="url"
               id="photo-url"
-              name="photo-url"
+              name="photoUrl"
               className="p-3 mt-0.5 rounded-2xl border-2 border-slate-400 focus:border-slate-600"
               value={photoUrl}
               onChange={(e) => setPhotoUrl(e.target.value)}
@@ -138,7 +157,7 @@ const Register = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirm-password"
-                name="confirm-password"
+                name="confirmPassword"
                 className="p-3 mt-0.5 pr-10 w-full rounded-2xl border-2 border-slate-400 focus:border-slate-600"
                 required
                 value={confirmPassword}
@@ -153,6 +172,14 @@ const Register = () => {
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
           </div>
+        </div>
+        <div className="flex justify-center gap-4 mt-6">
+          <button
+            type="submit"
+            className="btn btn-primary text-white text-xl font-bold rounded-2xl w-40"
+          >
+            Register
+          </button>
         </div>
       </form>
     </div>
