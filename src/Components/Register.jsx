@@ -5,6 +5,9 @@ import Context from "./Context/Context";
 import { FaEye, FaEyeSlash, FaRegCircleUser } from "react-icons/fa6";
 import { MdOutlineEmail, MdOutlineLock, MdOutlineImage } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { theme } = useContext(Context);
@@ -17,7 +20,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState("");
 
   const passwordRegex = /^(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
-
+  const navigate = useNavigate();
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
@@ -45,20 +48,34 @@ const Register = () => {
     const email = form.email.value;
     const password = form.confirmPassword.value;
     const photoUrl = form.photoUrl.value;
-    const user = {
-      name,
-      email,
-      password,
-      photoUrl,
-    };
-    console.log(user);
-    createUser(email, password)
-    .then((data) => {
-      console.log(data)
-    })
+    createUser(email, password).then((result) => {
+      const creationTime = result.user.metadata.creationTime;
+      const user = {
+        name,
+        email,
+        photoUrl,
+        creationTime,
+      };
+      axios.post("http://localhost:5000/users", user).then((response) => {
+        if (response.status === 200) {
+          Swal.fire(
+            "Registration Successful",
+            "User created successfully!",
+            "success"
+          ).then(() => navigate("/"));
+          form.reset();
+        } else {
+          Swal.fire(
+            "Error",
+            "An error occurred while creating the user. Please try again later.",
+            "error"
+          );
+        }
+      });
+    });
   };
   return (
-    <div className="min-h-screen mt-8 w-full flex items-center justify-center">
+    <div className="min-h-screen mt-16 w-full flex items-center justify-center">
       <div className="flex flex-col lg:flex-row p-3 gap-6 items-center justify-center">
         <Lottie animationData={registerAnimation} />
       </div>
@@ -181,6 +198,16 @@ const Register = () => {
             Register
           </button>
         </div>
+        <div className="divider"></div>
+        <p>
+          Already have an account?{" "}
+          <span
+            className="text-blue-600 cursor-pointer hover:text-blue-800"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </span>
+        </p>
       </form>
     </div>
   );
