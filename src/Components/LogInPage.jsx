@@ -6,13 +6,39 @@ import { BiUser } from "react-icons/bi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
 import { GrGithub, GrGoogle } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const LogInPage = () => {
-  const { theme } = useContext(Context);
+  const { theme, loginUser } = useContext(Context);
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email, password)
+      .then((res) => {
+        if (res.user) {
+          Swal.fire(
+            "Logged in successfully!",
+            "You are now logged in!",
+            "success"
+          );
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Invalid email or password!",
+          });
+        }
+        form.reset();
+      })
+      .then(() => navigate("/"));
   };
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
@@ -22,6 +48,7 @@ const LogInPage = () => {
           <Lottie animationData={LogInAnimation}></Lottie>
         </div>
         <form
+          onSubmit={handleLogin}
           action="handleLogin"
           className={`${
             theme === "dark" ? "bg-slate-700" : "bg-slate-50"
@@ -65,6 +92,18 @@ const LogInPage = () => {
               </div>
             </div>
           </div>
+          <div>
+            <button
+              type="submit"
+              className={`${
+                theme === "dark"
+                  ? "text-white bg-emerald-500 hover:bg-emerald-700"
+                  : "text-emerald-500 bg-white hover:text-emerald-700"
+              } w-full py-3 my-3 rounded-2xl font-semibold`}
+            >
+              Log In
+            </button>
+          </div>
           <div className="divider"></div>
           {/* Social login */}
           <div>
@@ -78,16 +117,14 @@ const LogInPage = () => {
               </button>
             </div>
           </div>
-          <Link>
-            <p>
-              Don't have an account?{" "}
-              <Link to={"/register"}>
-                <span className="text-emerald-500 cursor-pointer hover:underline font-semibold">
-                  Register
-                </span>
-              </Link>
-            </p>
-          </Link>
+          <p>
+            Don't have an account?{" "}
+            <Link to={"/register"}>
+              <span className="text-emerald-500 cursor-pointer hover:underline font-semibold">
+                Register
+              </span>
+            </Link>
+          </p>
         </form>
       </div>
     </div>
