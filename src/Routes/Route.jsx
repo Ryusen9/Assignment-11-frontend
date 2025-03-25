@@ -4,6 +4,7 @@ import HomeLayout from "../Layout/HomeLayout";
 import ErrorPage from "../Components/ErrorPage";
 import LogInPage from "../Components/LogInPage";
 import Register from "../Components/Register";
+import MoreMarathon from "../Components/MoreMarathon";
 
 const routers = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const routers = createBrowserRouter([
             {
                 path:"/register",
                 element: <Register/>,
+            }, 
+            {
+                path: "/moreEvents",
+                element: <MoreMarathon/>
             }
         ]
     }
