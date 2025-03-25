@@ -26,7 +26,8 @@ const routers = createBrowserRouter([
             }, 
             {
                 path: "/moreEvents",
-                element: <MoreMarathon/>
+                element: <MoreMarathon/>,
+                loader: () => fetch("http://localhost:5000/eventCount")
             }
         ]
     }

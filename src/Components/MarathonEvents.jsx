@@ -46,7 +46,7 @@ const MarathonEvents = () => {
           {events.map((event) => (
             <div
               key={event._id}
-              className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform hover:scale-105 w-full sm:w-96"
+              className="bg-white cursor-pointer shadow-lg rounded-2xl overflow-hidden transition-transform hover:scale-105 w-full sm:w-96"
             >
               <div className="relative">
                 <img
