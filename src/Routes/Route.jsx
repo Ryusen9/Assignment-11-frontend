@@ -6,6 +6,7 @@ import LogInPage from "../Components/LogInPage";
 import Register from "../Components/Register";
 import MoreMarathon from "../Components/MoreMarathon";
 import EventDetails from "../Components/EventDetails";
+import AddMarathon from "../Components/AddMarathon";
 
 const routers = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const routers = createBrowserRouter([
                 path: "/event/:id",
                 element: <EventDetails/>,
                 loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
+            },
+            {
+                path: "/addMarathonEvent",
+                element: <AddMarathon/>
             }
         ]
     }

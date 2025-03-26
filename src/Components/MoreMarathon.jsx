@@ -62,9 +62,11 @@ const MoreMarathon = () => {
         {/* Add a marathon event */}
         <div className="bg-emerald-300/50 border flex items-center justify-between p-4 rounded-2xl mt-4">
           <p className="text-xl font-semibold">Are you an organizer?</p>
-          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-semibold transition-all">
-            Add a Marathon Event
-          </button>
+          <Link to={"/addMarathonEvent"}>
+            <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-semibold transition-all">
+              Add a Marathon Event
+            </button>
+          </Link>
         </div>
         <p className="my-3 text-center">Otherwise... Let's run along</p>
 

@@ -30,7 +30,7 @@ const MarathonEvents = () => {
   }
 
   return (
-    <div className="min-h-screen w-full overflow-hidden">
+    <div className="min-h-screen w-full my-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Headline */}
         <div>

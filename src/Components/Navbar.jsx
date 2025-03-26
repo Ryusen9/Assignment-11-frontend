@@ -81,9 +81,11 @@ export const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center justify-center">
             <ul className="flex items-center gap-7">
-              <li className="cursor-pointer hover:text-emerald-400">Home</li>
               <li className="cursor-pointer hover:text-emerald-400">
-                Marathons
+                <Link to={"/"}>Home</Link>
+              </li>
+              <li className="cursor-pointer hover:text-emerald-400">
+                <Link to={"/moreEvents"}>Marathons</Link>
               </li>
               <li className="cursor-pointer hover:text-emerald-400">
                 Dashboard
