@@ -5,6 +5,7 @@ import ErrorPage from "../Components/ErrorPage";
 import LogInPage from "../Components/LogInPage";
 import Register from "../Components/Register";
 import MoreMarathon from "../Components/MoreMarathon";
+import EventDetails from "../Components/EventDetails";
 
 const routers = createBrowserRouter([
     {
@@ -28,6 +29,11 @@ const routers = createBrowserRouter([
                 path: "/moreEvents",
                 element: <MoreMarathon/>,
                 loader: () => fetch("http://localhost:5000/eventCount")
+            },
+            {
+                path: "/event/:id",
+                element: <EventDetails/>,
+                loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
             }
         ]
     }

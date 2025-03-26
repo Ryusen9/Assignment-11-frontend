@@ -4,7 +4,7 @@ import { BiLocationPlus } from "react-icons/bi";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { LuFileInput } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const MoreMarathon = () => {
   const [events, setEvents] = useState([]);
@@ -107,9 +107,11 @@ const MoreMarathon = () => {
                   </span>
                 </p>
 
-                <button className="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-semibold transition-all">
-                  Show More
-                </button>
+                <Link to={`/event/${event._id}`}>
+                  <button className="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-semibold transition-all">
+                    Show More
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

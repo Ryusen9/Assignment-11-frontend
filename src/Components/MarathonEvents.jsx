@@ -83,9 +83,11 @@ const MarathonEvents = () => {
                   </p>
                 </div>
 
-                <button className="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-semibold transition-all">
-                  Show More
-                </button>
+                <Link to={`/event/${event._id}`}>
+                  <button className="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-semibold transition-all">
+                    Show More
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
