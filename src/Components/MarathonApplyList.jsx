@@ -6,16 +6,32 @@ import Swal from "sweetalert2";
 const MarathonApplyList = () => {
   const { user } = useContext(Context);
   const [usersInfo, setUsersInfo] = useState([]);
+  const [filteredUsersInfo, setFilteredUsersInfo] = useState([]); // State for filtered list
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     if (user?.email) {
       axios
         .get(`http://localhost:5000/userApplications?userEmail=${user.email}`)
-        .then((res) => setUsersInfo(res.data))
+        .then((res) => {
+          setUsersInfo(res.data);
+          setFilteredUsersInfo(res.data); // Initially set filtered list to all applications
+        })
         .catch((err) => console.error(err));
     }
   }, [user?.email]);
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    // Filter the marathon applications based on the search query
+    const filtered = usersInfo.filter((user) =>
+      user.marathonTitle.toLowerCase().includes(query)
+    );
+    setFilteredUsersInfo(filtered); // Update the filtered list
+  };
 
   const handleDelete = (marathonId) => {
     Swal.fire({
@@ -33,12 +49,13 @@ const MarathonApplyList = () => {
             `http://localhost:5000/userApplications?userEmail=${user.email}&marathonId=${marathonId}`
           )
           .then(() => {
-            Swal.fire(
-              "Deleted!",
-              "Your application has been deleted.",
-              "success"
-            );
+            Swal.fire("Deleted!", "Your application has been deleted.", "success");
             setUsersInfo((prev) =>
+              prev.filter(
+                (application) => application.marathonId !== marathonId
+              )
+            );
+            setFilteredUsersInfo((prev) =>
               prev.filter(
                 (application) => application.marathonId !== marathonId
               )
@@ -87,6 +104,18 @@ const MarathonApplyList = () => {
               : application
           )
         );
+        setFilteredUsersInfo((prev) =>
+          prev.map((application) =>
+            application.marathonId === selectedUser.marathonId
+              ? {
+                  ...application,
+                  age: updatedAge,
+                  emergencyContact: updatedContact,
+                  applicantName: updatedName,
+                }
+              : application
+          )
+        );
         document.getElementById("update_modal").close();
       })
       .catch((err) => {
@@ -98,6 +127,18 @@ const MarathonApplyList = () => {
   return (
     <div className="min-h-screen w-full mt-24">
       <div className="h-full max-w-7xl mx-auto">
+        {/* Search Input */}
+        <div className="mb-4 flex justify-end">
+          <input
+            type="text"
+            placeholder="Search by Marathon Title"
+            value={searchQuery}
+            onChange={handleSearch}
+            className="input input-bordered w-1/4"
+          />
+        </div>
+
+        {/* Table */}
         <div className="overflow-x-auto">
           <table className="table table-xs">
             <thead>
@@ -113,7 +154,7 @@ const MarathonApplyList = () => {
               </tr>
             </thead>
             <tbody>
-              {usersInfo.map((user, index) => (
+              {filteredUsersInfo.map((user, index) => (
                 <tr key={index}>
                   <th>{index + 1}</th>
                   <td>{`${user.applicantName} (${user.age})`}</td>
@@ -138,7 +179,7 @@ const MarathonApplyList = () => {
                   </td>
                 </tr>
               ))}
-              {usersInfo.length === 0 && (
+              {filteredUsersInfo.length === 0 && (
                 <tr>
                   <td colSpan="8" className="text-center py-4">
                     No applications found.

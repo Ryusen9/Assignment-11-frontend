@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Context from "./Context/Context";
 import axios from "axios";
 import Swal from "sweetalert2";
-import gsap from "gsap";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../public/Lottie/Loading animation.json";
 
@@ -18,20 +17,11 @@ const MarathonApply = () => {
 
   const formRef = useRef();
 
-  useEffect(() => {
-    gsap.from(formRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const applicationData = {
-      applicantName: user.displayName,
+      applicantName: e.target.name.value,
       applicantEmail: user.email,
       age,
       emergencyContact,
@@ -77,8 +67,8 @@ const MarathonApply = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <input
             type="text"
-            value={user.displayName}
-            readOnly
+            name="name"
+            placeholder="Name"
             className="input input-bordered w-full"
           />
           <input
