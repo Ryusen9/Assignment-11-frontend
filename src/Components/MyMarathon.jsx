@@ -4,7 +4,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { BiLocationPlus } from "react-icons/bi";
 import Lottie from "lottie-react";
-import loadingAnimation from "../../public/Lottie/Loading animation.json"
+import loadingAnimation from "../../public/Lottie/Loading animation.json";
+import { Link } from "react-router-dom";
 
 const MyMarathon = () => {
   const { user } = useContext(Context);
@@ -72,11 +73,19 @@ const MyMarathon = () => {
           <p className="text-sm font-medium font-Heebo uppercase">
             Marathons event that I've created
           </p>
+          <div className="mt-4 bg-emerald-200/60 p-4 rounded-2xl flex items-center justify-between">
+            <p>Applied for marathon? go check it out!</p>
+            <Link to={"/myApplyList"}>
+              <button className="btn btn-md btn-primary">
+                My Marathon Application
+              </button>
+            </Link>
+          </div>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center">
-            <Lottie animationData={loadingAnimation}/>
+            <Lottie animationData={loadingAnimation} />
           </div>
         ) : userInfo.length === 0 ? (
           <div className="text-center text-gray-500">No marathon found.</div>
@@ -123,7 +132,7 @@ const MyMarathon = () => {
                             >
                               <div>
                                 <p className="text-center text-wrap font-Heebo font-semibold text-lg mb-8">
-                                  Fill this to enter your event!
+                                  Update your event!
                                 </p>
                               </div>
                               <div className="grid grid-cols-3 gap-4">

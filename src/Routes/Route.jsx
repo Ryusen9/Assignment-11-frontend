@@ -8,6 +8,8 @@ import MoreMarathon from "../Components/MoreMarathon";
 import EventDetails from "../Components/EventDetails";
 import AddMarathon from "../Components/AddMarathon";
 import MyMarathon from "../Components/MyMarathon";
+import MarathonApply from "../Components/MarathonApply";
+import MarathonApplyList from "../Components/MarathonApplyList";
 
 const routers = createBrowserRouter([
     {
@@ -44,6 +46,14 @@ const routers = createBrowserRouter([
             {
                 path: "/myMarathon",
                 element: <MyMarathon/>
+            },
+            {
+                path: "/marathonApply",
+                element: <MarathonApply/>
+            },
+            {
+                path: "/myMarathonApplications",
+                element: <MarathonApplyList/>
             }
         ]
     }

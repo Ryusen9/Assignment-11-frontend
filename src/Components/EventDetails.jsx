@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Context from "./Context/Context";
 import { BiCalendar, BiMap, BiRun } from "react-icons/bi";
 import { MdOutlineDescription } from "react-icons/md";
@@ -56,13 +56,14 @@ const EventDetails = () => {
               {event.description}
             </p>
             <p className="flex items-center gap-2 text-lg">
-              <IoCheckmarkDone className="text-green-500" />{" "}
-              Registered:{" "}
+              <IoCheckmarkDone className="text-green-500" /> Registered:{" "}
               {event.totalRegistrationCount}
             </p>
-            <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-semibold transition-all">
-              Register Now
-            </button>
+            <Link state={{event}} to={"/marathonApply"}>
+              <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-semibold transition-all">
+                Register Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
