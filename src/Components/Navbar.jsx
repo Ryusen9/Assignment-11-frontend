@@ -88,7 +88,7 @@ export const Navbar = () => {
                 <Link to={"/moreEvents"}>Marathons</Link>
               </li>
               <li className="cursor-pointer hover:text-emerald-400">
-                Dashboard
+                <Link to={"/myMarathon"}>Dashboard</Link>
               </li>
             </ul>
           </div>
@@ -169,9 +169,15 @@ export const Navbar = () => {
         className="fixed top-0 left-0 h-full w-full text-black px-10 py-20 bg-white flex flex-col gap-4 translate-y-[-100%] opacity-0 lg:hidden z-40"
       >
         <ul className="space-y-4">
-          <li className="cursor-pointer hover:text-emerald-400">Home</li>
-          <li className="cursor-pointer hover:text-emerald-400">Marathons</li>
-          <li className="cursor-pointer hover:text-emerald-400">Dashboard</li>
+          <li className="cursor-pointer hover:text-emerald-400">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="cursor-pointer hover:text-emerald-400">
+            <Link to={"/moreEvents"}>Marathons</Link>
+          </li>
+          <li className="cursor-pointer hover:text-emerald-400">
+            <Link to={"/myMarathon"}>Dashboard</Link>
+          </li>
         </ul>
       </div>
     </>

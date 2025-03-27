@@ -3,10 +3,13 @@ import Context from "./Context/Context";
 import { BiLocationPlus } from "react-icons/bi";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 const AddMarathon = () => {
-  const { theme } = useContext(Context);
+  const { theme, user } = useContext(Context);
   const [totalRunningDistance, setTotalRunningDistance] = useState("25k");
+  const navigate = useNavigate();
   const handleRunningDistance = (e) => {
     setTotalRunningDistance(e.target.value);
   };
@@ -20,6 +23,7 @@ const AddMarathon = () => {
     const endRegistrationDate = form.regEndDate.value;
     const runningDistance = totalRunningDistance;
     const description = form.description.value;
+    const userEmail = user.email;
     const marathonImage = form.marathonImage.value;
     const createdAt = new Date().toLocaleDateString("en-CA");
     const totalRegistrationCount = 0;
@@ -34,6 +38,7 @@ const AddMarathon = () => {
       marathonImage,
       createdAt,
       totalRegistrationCount,
+      userEmail,
     };
     console.log(marathonData);
     axios
@@ -43,7 +48,7 @@ const AddMarathon = () => {
           "Marathon Created",
           "Your marathon has been created successfully!",
           "success"
-        );
+        ).then(() => navigate("/moreEvents"))
       });
   };
   return (

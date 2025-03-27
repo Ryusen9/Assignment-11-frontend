@@ -7,6 +7,7 @@ import Register from "../Components/Register";
 import MoreMarathon from "../Components/MoreMarathon";
 import EventDetails from "../Components/EventDetails";
 import AddMarathon from "../Components/AddMarathon";
+import MyMarathon from "../Components/MyMarathon";
 
 const routers = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const routers = createBrowserRouter([
             {
                 path: "/addMarathonEvent",
                 element: <AddMarathon/>
+            },
+            {
+                path: "/myMarathon",
+                element: <MyMarathon/>
             }
         ]
     }

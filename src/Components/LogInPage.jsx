@@ -10,7 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const LogInPage = () => {
-  const { theme, loginUser } = useContext(Context);
+  const { theme, loginUser, logInWithGoogle, logInWithGithub } =
+    useContext(Context);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true);
   const handleShowPassword = () => {
@@ -39,6 +40,40 @@ const LogInPage = () => {
         form.reset();
       })
       .then(() => navigate("/"));
+  };
+  const handleGoogleLogin = () => {
+    logInWithGoogle().then((res) => {
+      if (res.user) {
+        Swal.fire(
+          "Logged in successfully!",
+          "You are now logged in with Google!",
+          "success"
+        ).then(() => navigate("/"));
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "An error occurred while logging in with Google.",
+        });
+      }
+    });
+  };
+  const handleGithubLogin = () => {
+    logInWithGithub().then((res) => {
+      if (res.user) {
+        Swal.fire(
+          "Logged in successfully!",
+          "You are now logged in with GitHub!",
+          "success"
+        ).then(() => navigate("/"));
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "An error occurred while logging in with GitHub.",
+        });
+      }
+    });
   };
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
@@ -109,10 +144,16 @@ const LogInPage = () => {
           <div>
             <p className="text-xs">You can also login with</p>
             <div className="text-center flex gap-3.5 items-center justify-center my-2">
-              <button className="btn btn-circle btn-outline btn-primary text-2xl">
+              <button
+                onClick={handleGoogleLogin}
+                className="btn btn-circle btn-outline btn-primary text-2xl"
+              >
                 <GrGoogle />
               </button>
-              <button className="btn btn-circle btn-outline btn-primary text-2xl">
+              <button
+                onClick={handleGithubLogin}
+                className="btn btn-circle btn-outline btn-primary text-2xl"
+              >
                 <GrGithub />
               </button>
             </div>
