@@ -4,6 +4,8 @@ import Context from "./Context/Context";
 import axios from "axios";
 import Swal from "sweetalert2";
 import gsap from "gsap";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../public/Lottie/Loading animation.json";
 
 const MarathonApply = () => {
   const { user } = useContext(Context);
@@ -58,7 +60,7 @@ const MarathonApply = () => {
   if (!user || !event) {
     return (
       <div className="min-h-screen flex items-center justify-center mt-24">
-        <p className="text-xl font-semibold">Loading...</p>
+        <Lottie animationData={loadingAnimation} />
       </div>
     );
   }

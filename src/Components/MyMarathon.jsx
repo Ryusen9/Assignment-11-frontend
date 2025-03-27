@@ -75,7 +75,7 @@ const MyMarathon = () => {
           </p>
           <div className="mt-4 bg-emerald-200/60 p-4 rounded-2xl flex items-center justify-between">
             <p>Applied for marathon? go check it out!</p>
-            <Link to={"/myApplyList"}>
+            <Link to={"/myMarathonApplications"}>
               <button className="btn btn-md btn-primary">
                 My Marathon Application
               </button>
@@ -99,7 +99,7 @@ const MyMarathon = () => {
                   <th>Marathon Start Date</th>
                   <th>Created At</th>
                   <th>Location</th>
-                  <th>Total Registration</th>
+                  <th>Distance</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -111,7 +111,7 @@ const MyMarathon = () => {
                     <td>{info.marathonStartDate}</td>
                     <td>{info.createdAt}</td>
                     <td>{info.location}</td>
-                    <td>{info.totalRegistrationCount}</td>
+                    <td>{info.runningDistance}</td>
                     <td>
                       <div className="flex items-center gap-2">
                         {/* Open the modal using document.getElementById('ID').showModal() method */}

@@ -125,7 +125,6 @@ export const Navbar = () => {
                         <button className="btn mx-4" onClick={handleLogout}>
                           Log Out
                         </button>
-                        <button className="btn">Update Profile</button>
                       </form>
                     </div>
                   </div>
