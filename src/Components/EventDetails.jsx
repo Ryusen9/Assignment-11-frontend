@@ -14,6 +14,7 @@ const EventDetails = () => {
 
   const calculateTimeLeft = () => {
     const now = new Date();
+    console.log(now)
     const timeDiff = marathonStartDate - now;
     return timeDiff > 0 ? timeDiff : 0;
   };
@@ -53,7 +54,7 @@ const EventDetails = () => {
                   size={180}
                 >
                   {({ remainingTime }) => {
-                    const days = Math.floor(remainingTime / 86400); // Calculate days
+                    const days = Math.floor(remainingTime / 86400);
                     const hours = Math.floor((remainingTime % 86400) / 3600);
                     const minutes = Math.floor((remainingTime % 3600) / 60);
                     const seconds = remainingTime % 60;

@@ -10,6 +10,7 @@ const MoreMarathon = () => {
   const [events, setEvents] = useState([]);
   const [eventsPerPage, setEventsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [order, setOrder] = useState("newest");
   const { count } = useLoaderData();
 
   // Calculate total number of pages
@@ -18,8 +19,6 @@ const MoreMarathon = () => {
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(i);
   }
-
-  // Pagination Handlers
   const handlePrevious = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
@@ -33,12 +32,14 @@ const MoreMarathon = () => {
     setEventsPerPage(value);
     setCurrentPage(1);
   };
-
-  // Fetch marathon events from the backend
+  const handleOrderChange = (e) => {
+    const value = e.target.value;
+    setOrder(value);
+  };
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/marathonEvents?page=${currentPage}&size=${eventsPerPage}`
+        `http://localhost:5000/marathonEvents?page=${currentPage}&size=${eventsPerPage}&sortOrder=${order}`
       )
       .then((response) => {
         setEvents(response.data);
@@ -46,7 +47,7 @@ const MoreMarathon = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [currentPage, eventsPerPage]);
+  }, [currentPage, eventsPerPage, order]);
 
   return (
     <div className="min-h-screen w-full mt-24">
@@ -71,6 +72,16 @@ const MoreMarathon = () => {
         <p className="my-3 text-center">Otherwise... Let's run along</p>
 
         {/* Marathon Events List */}
+        <div className="flex justify-end items-center">
+          <select
+            onChange={handleOrderChange}
+            defaultValue="newest"
+            className="select"
+          >
+            <option value={"newest"}>Newest</option>
+            <option value={"oldest"}>Oldest</option>
+          </select>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 p-6">
           {events.map((event) => (
             <div
