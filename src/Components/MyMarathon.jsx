@@ -19,7 +19,9 @@ const MyMarathon = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/myMarathon?userEmail=${user.email}`)
+        .get(`http://localhost:5000/myMarathon?userEmail=${user.email}`, {
+          withCredentials: true,
+        })
         .then((res) => {
           setUserInfo(res.data);
           setLoading(false);
@@ -33,7 +35,10 @@ const MyMarathon = () => {
   const handleDelete = (id) => {
     axios
       .delete(
-        `http://localhost:5000/myMarathon?userEmail=${user.email}&id=${id}`
+        `http://localhost:5000/myMarathon?userEmail=${user.email}&id=${id}`,
+        {
+          withCredentials: true,
+        }
       )
       .then(() => {
         Swal.fire(
@@ -59,7 +64,10 @@ const MyMarathon = () => {
     axios
       .patch(
         `http://localhost:5000/myMarathon?userEmail=${user.email}&id=${id}`,
-        updatedEvent
+        updatedEvent,
+        {
+          withCredentials: true,
+        }
       )
       .then(() => window.location.reload());
   };

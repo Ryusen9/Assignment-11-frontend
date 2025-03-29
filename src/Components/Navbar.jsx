@@ -34,7 +34,9 @@ export const Navbar = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/usersInfo?email=${user.email}`)
+        .get(`http://localhost:5000/usersInfo?email=${user.email}`, {
+          withCredentials: true,
+        })
         .then((res) => {
           console.log(res);
           setUserPhoto(res.data.photoUrl);

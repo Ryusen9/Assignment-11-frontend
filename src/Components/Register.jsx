@@ -56,7 +56,9 @@ const Register = () => {
         photoUrl,
         creationTime,
       };
-      axios.post("http://localhost:5000/users", user).then((response) => {
+      axios.post("http://localhost:5000/users", user, {
+        withCredentials: true,
+      }).then((response) => {
         if (response.status === 200) {
           Swal.fire(
             "Registration Successful",

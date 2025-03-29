@@ -42,7 +42,9 @@ const AddMarathon = () => {
     };
     console.log(marathonData);
     axios
-      .post("http://localhost:5000/marathonEvents", marathonData)
+      .post("http://localhost:5000/marathonEvents", marathonData, {
+        withCredentials: true,
+      })
       .then(() => {
         Swal.fire(
           "Marathon Created",

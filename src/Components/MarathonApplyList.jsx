@@ -13,7 +13,9 @@ const MarathonApplyList = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/userApplications?userEmail=${user.email}`)
+        .get(`http://localhost:5000/userApplications?userEmail=${user.email}`, {
+          withCredentials: true,
+        })
         .then((res) => {
           setUsersInfo(res.data);
           setFilteredUsersInfo(res.data); // Initially set filtered list to all applications
@@ -46,10 +48,17 @@ const MarathonApplyList = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            `http://localhost:5000/userApplications?userEmail=${user.email}&marathonId=${marathonId}`
+            `http://localhost:5000/userApplications?userEmail=${user.email}&marathonId=${marathonId}`,
+            {
+              withCredentials: true,
+            }
           )
           .then(() => {
-            Swal.fire("Deleted!", "Your application has been deleted.", "success");
+            Swal.fire(
+              "Deleted!",
+              "Your application has been deleted.",
+              "success"
+            );
             setUsersInfo((prev) =>
               prev.filter(
                 (application) => application.marathonId !== marathonId
@@ -88,6 +97,9 @@ const MarathonApplyList = () => {
           age: updatedAge,
           emergencyContact: updatedContact,
           applicantName: updatedName,
+        },
+        {
+          withCredentials: true,
         }
       )
       .then(() => {

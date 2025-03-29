@@ -33,7 +33,9 @@ const MarathonApply = () => {
     };
 
     axios
-      .post(`http://localhost:5000/userApplications`, applicationData)
+      .post(`http://localhost:5000/userApplications`, applicationData, {
+        withCredentials: true,
+      })
       .then(() => {
         Swal.fire(
           "Application Successful",
