@@ -10,6 +10,7 @@ import AddMarathon from "../Components/AddMarathon";
 import MyMarathon from "../Components/MyMarathon";
 import MarathonApply from "../Components/MarathonApply";
 import MarathonApplyList from "../Components/MarathonApplyList";
+import PrivateRoute from "./PrivateRoute";
 
 const routers = createBrowserRouter([
   {
@@ -45,19 +46,19 @@ const routers = createBrowserRouter([
       },
       {
         path: "/addMarathonEvent",
-        element: <AddMarathon />,
+        element: <PrivateRoute><AddMarathon /></PrivateRoute>,
       },
       {
         path: "/myMarathon",
-        element: <MyMarathon />,
+        element: <PrivateRoute><MyMarathon /></PrivateRoute>,
       },
       {
         path: "/marathonApply",
-        element: <MarathonApply />,
+        element: <PrivateRoute><MarathonApply /></PrivateRoute>,
       },
       {
         path: "/myMarathonApplications",
-        element: <MarathonApplyList />,
+        element: <PrivateRoute><MarathonApplyList /></PrivateRoute>,
       },
     ],
   },
