@@ -38,12 +38,10 @@ export const Navbar = () => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res);
           setUserPhoto(res.data.photoUrl);
         });
     }
   }, [user]);
-  console.log(userPhoto);
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",

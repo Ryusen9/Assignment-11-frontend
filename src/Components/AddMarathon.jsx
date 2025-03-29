@@ -40,7 +40,6 @@ const AddMarathon = () => {
       totalRegistrationCount,
       userEmail,
     };
-    console.log(marathonData);
     axios
       .post("http://localhost:5000/marathonEvents", marathonData, {
         withCredentials: true,

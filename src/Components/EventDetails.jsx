@@ -14,7 +14,6 @@ const EventDetails = () => {
 
   const calculateTimeLeft = () => {
     const now = new Date();
-    console.log(now)
     const timeDiff = marathonStartDate - now;
     return timeDiff > 0 ? timeDiff : 0;
   };

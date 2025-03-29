@@ -51,8 +51,7 @@ const ContextProvider = ({ children }) => {
           .post("http://localhost:5000/jwt", userData, {
             withCredentials: true,
           })
-          .then((res) => {
-            console.log(res.data);
+          .then(() => {
             setLoading(false);
           });
       } else {
@@ -64,8 +63,7 @@ const ContextProvider = ({ children }) => {
               withCredentials: true,
             }
           )
-          .then((res) => {
-            console.log(res.data);
+          .then(() => {
             setLoading(false);
           });
       }
