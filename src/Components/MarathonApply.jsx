@@ -33,9 +33,13 @@ const MarathonApply = () => {
     };
 
     axios
-      .post(`http://localhost:5000/userApplications`, applicationData, {
-        withCredentials: true,
-      })
+      .post(
+        `https://assignment-11-backend-three.vercel.app/userApplications`,
+        applicationData,
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         Swal.fire(
           "Application Successful",

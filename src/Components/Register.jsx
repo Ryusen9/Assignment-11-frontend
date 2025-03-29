@@ -56,24 +56,26 @@ const Register = () => {
         photoUrl,
         creationTime,
       };
-      axios.post("http://localhost:5000/users", user, {
-        withCredentials: true,
-      }).then((response) => {
-        if (response.status === 200) {
-          Swal.fire(
-            "Registration Successful",
-            "User created successfully!",
-            "success"
-          ).then(() => navigate("/"));
-          form.reset();
-        } else {
-          Swal.fire(
-            "Error",
-            "An error occurred while creating the user. Please try again later.",
-            "error"
-          );
-        }
-      });
+      axios
+        .post("https://assignment-11-backend-three.vercel.app/users", user, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            Swal.fire(
+              "Registration Successful",
+              "User created successfully!",
+              "success"
+            ).then(() => navigate("/"));
+            form.reset();
+          } else {
+            Swal.fire(
+              "Error",
+              "An error occurred while creating the user. Please try again later.",
+              "error"
+            );
+          }
+        });
     });
   };
   return (

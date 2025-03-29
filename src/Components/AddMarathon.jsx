@@ -5,7 +5,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-
 const AddMarathon = () => {
   const { theme, user } = useContext(Context);
   const [totalRunningDistance, setTotalRunningDistance] = useState("25k");
@@ -41,15 +40,19 @@ const AddMarathon = () => {
       userEmail,
     };
     axios
-      .post("http://localhost:5000/marathonEvents", marathonData, {
-        withCredentials: true,
-      })
+      .post(
+        "https://assignment-11-backend-three.vercel.app/marathonEvents",
+        marathonData,
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         Swal.fire(
           "Marathon Created",
           "Your marathon has been created successfully!",
           "success"
-        ).then(() => navigate("/moreEvents"))
+        ).then(() => navigate("/moreEvents"));
       });
   };
   return (

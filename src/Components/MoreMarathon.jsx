@@ -39,7 +39,7 @@ const MoreMarathon = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/marathonEvents?page=${currentPage}&size=${eventsPerPage}&sortOrder=${order}`
+        `https://assignment-11-backend-three.vercel.app/marathonEvents?page=${currentPage}&size=${eventsPerPage}&sortOrder=${order}`
       )
       .then((response) => {
         setEvents(response.data);

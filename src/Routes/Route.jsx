@@ -12,51 +12,55 @@ import MarathonApply from "../Components/MarathonApply";
 import MarathonApplyList from "../Components/MarathonApplyList";
 
 const routers = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
         path: "/",
-        element: <App/>,
-        errorElement: <ErrorPage/>,
-        children: [
-            {
-                path: "/",
-                element: <HomeLayout/>
-            },
-            {
-                path: "/logIn",
-                element: <LogInPage/>
-            },
-            {
-                path:"/register",
-                element: <Register/>,
-            }, 
-            {
-                path: "/moreEvents",
-                element: <MoreMarathon/>,
-                loader: () => fetch("http://localhost:5000/eventCount")
-            },
-            {
-                path: "/event/:id",
-                element: <EventDetails/>,
-                loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
-            },
-            {
-                path: "/addMarathonEvent",
-                element: <AddMarathon/>
-            },
-            {
-                path: "/myMarathon",
-                element: <MyMarathon/>
-            },
-            {
-                path: "/marathonApply",
-                element: <MarathonApply/>
-            },
-            {
-                path: "/myMarathonApplications",
-                element: <MarathonApplyList/>
-            }
-        ]
-    }
-])
+        element: <HomeLayout />,
+      },
+      {
+        path: "/logIn",
+        element: <LogInPage />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/moreEvents",
+        element: <MoreMarathon />,
+        loader: () =>
+          fetch("https://assignment-11-backend-three.vercel.app/eventCount"),
+      },
+      {
+        path: "/event/:id",
+        element: <EventDetails />,
+        loader: ({ params }) =>
+          fetch(
+            `https://assignment-11-backend-three.vercel.app/event/${params.id}`
+          ),
+      },
+      {
+        path: "/addMarathonEvent",
+        element: <AddMarathon />,
+      },
+      {
+        path: "/myMarathon",
+        element: <MyMarathon />,
+      },
+      {
+        path: "/marathonApply",
+        element: <MarathonApply />,
+      },
+      {
+        path: "/myMarathonApplications",
+        element: <MarathonApplyList />,
+      },
+    ],
+  },
+]);
 
 export default routers;

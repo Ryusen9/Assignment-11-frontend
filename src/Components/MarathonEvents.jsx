@@ -11,7 +11,9 @@ const MarathonEvents = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/marathonEvents?limit=${6}`)
+      .get(
+        `https://assignment-11-backend-three.vercel.app/marathonEvents?limit=${6}`
+      )
       .then((response) => {
         setEvents(response.data);
       })

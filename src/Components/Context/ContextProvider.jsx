@@ -48,16 +48,20 @@ const ContextProvider = ({ children }) => {
       if (currentUser?.email) {
         const userData = { email: currentUser.email };
         axios
-          .post("http://localhost:5000/jwt", userData, {
-            withCredentials: true,
-          })
+          .post(
+            "https://assignment-11-backend-three.vercel.app/jwt",
+            userData,
+            {
+              withCredentials: true,
+            }
+          )
           .then(() => {
             setLoading(false);
           });
       } else {
         axios
           .post(
-            "http://localhost:5000/logout",
+            "https://assignment-11-backend-three.vercel.app/logout",
             {},
             {
               withCredentials: true,

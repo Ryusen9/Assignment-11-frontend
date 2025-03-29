@@ -13,9 +13,12 @@ const MarathonApplyList = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/userApplications?userEmail=${user.email}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://assignment-11-backend-three.vercel.app/userApplications?userEmail=${user.email}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           setUsersInfo(res.data);
           setFilteredUsersInfo(res.data); // Initially set filtered list to all applications
@@ -48,7 +51,7 @@ const MarathonApplyList = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            `http://localhost:5000/userApplications?userEmail=${user.email}&marathonId=${marathonId}`,
+            `https://assignment-11-backend-three.vercel.app/userApplications?userEmail=${user.email}&marathonId=${marathonId}`,
             {
               withCredentials: true,
             }
@@ -92,7 +95,7 @@ const MarathonApplyList = () => {
 
     axios
       .patch(
-        `http://localhost:5000/userApplications?userEmail=${user.email}&marathonId=${selectedUser.marathonId}`,
+        `https://assignment-11-backend-three.vercel.app/userApplications?userEmail=${user.email}&marathonId=${selectedUser.marathonId}`,
         {
           age: updatedAge,
           emergencyContact: updatedContact,

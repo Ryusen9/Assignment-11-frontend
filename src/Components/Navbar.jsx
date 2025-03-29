@@ -34,9 +34,12 @@ export const Navbar = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/usersInfo?email=${user.email}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://assignment-11-backend-three.vercel.app/usersInfo?email=${user.email}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           setUserPhoto(res.data.photoUrl);
         });

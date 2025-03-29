@@ -19,9 +19,12 @@ const MyMarathon = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/myMarathon?userEmail=${user.email}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://assignment-11-backend-three.vercel.app/myMarathon?userEmail=${user.email}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           setUserInfo(res.data);
           setLoading(false);
@@ -35,7 +38,7 @@ const MyMarathon = () => {
   const handleDelete = (id) => {
     axios
       .delete(
-        `http://localhost:5000/myMarathon?userEmail=${user.email}&id=${id}`,
+        `https://assignment-11-backend-three.vercel.app/myMarathon?userEmail=${user.email}&id=${id}`,
         {
           withCredentials: true,
         }
@@ -63,7 +66,7 @@ const MyMarathon = () => {
     };
     axios
       .patch(
-        `http://localhost:5000/myMarathon?userEmail=${user.email}&id=${id}`,
+        `https://assignment-11-backend-three.vercel.app/myMarathon?userEmail=${user.email}&id=${id}`,
         updatedEvent,
         {
           withCredentials: true,
